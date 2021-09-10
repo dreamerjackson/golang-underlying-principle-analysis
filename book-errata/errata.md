@@ -50,19 +50,19 @@ AssignStmt struct {
 第10页第3段
 ```
 case OCLOSURE,
-	 OCALLPART,
-	 ORANGE,
-	 OFOR,
-	 OFORUNTIL,
-	 OSELECT,
-	 OTYPESW,
-	 OGO,
-	 ODEFER,
-	 ODCLTYPE, // can't print yet
-	 OBREAK,
-	 ORETJMP:
-	 v.reason = "unhandled op " + n.Op.String()
-	 return true
+     OCALLPART, 
+     ORANGE,
+     OFOR,
+     OFORUNTIL,
+     OSELECT,
+     OTYPESW,
+     OGO,
+     ODEFER,
+     ODCLTYPE,
+     OBREAK,
+     ORETJMP:
+     v.reason = "unhandled op " + n.Op.String()
+     return true
 ```
 
 第27页第1段：
