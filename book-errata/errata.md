@@ -133,24 +133,24 @@ if h.extra != nil && h.extra.overflow != nil {
 
 103页 第1段：
 ```
-	for {
-		b.tophash[i] = emptyRest
-		if i == 0 {
-			if b == bOrig {
-				break // beginning of initial bucket, we're done.
-			}
-			// Find previous bucket, continue at its last entry.
-			c := b
-			for b = bOrig; b.overflow(t) != c; b = b.overflow(t) {
-			}
-			i = bucketCnt - 1
-		} else {
-			i--
+for {
+	b.tophash[i] = emptyRest
+	if i == 0 {
+		if b == bOrig {
+			break // beginning of initial bucket, we're done.
 		}
-		if b.tophash[i] != emptyOne {
-			break
+		// Find previous bucket, continue at its last entry.
+		c := b
+		for b = bOrig; b.overflow(t) != c; b = b.overflow(t) {
 		}
+		i = bucketCnt - 1
+	} else {
+		i--
 	}
+	if b.tophash[i] != emptyOne {
+		break
+	}
+}
 ```
 
 126页第2段：
