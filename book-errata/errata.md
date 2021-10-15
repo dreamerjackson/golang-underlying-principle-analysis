@@ -58,6 +58,15 @@ Go语言为了解决哈希冲突使用了开放式寻址中的线性地址探测
 ## 第17章
 * 107页第二行: trace工具 -> race工具
 * (17.5)  第2段： trace工具 -> race工具
+
+## 第18章
+* (第4次印刷修正)(18.2.2) 由于allocCache元素为uint64，因此其最多一次缓存64字节。-> 由于allocCache元素为uint64，因此其最多一次缓存64个元素。
+* (第4次印刷修正)(18.2.2) 当bit位为1代表当前对应的span中的元素已经分配。 ->  当bit位为0代表当前对应的span中的元素已经分配，这里的设计是为了sys.Ctz64函数加速计算。因此sys.Ctz64可以直接计算 allocCache 最后面有几个 0 (也就是在第几个 bit 遇到第一个 1) 来使用
+* (第4次印刷修正)(图18-7下一段)
+因此，只要从allocCache开始找到哪一位为0即可。假如X位为0，那么X + freeindex 为当前span中可用的元素序号。当allocCache中bit位全部被标记为1后，需要移动freeindex，并更新allocCache，一直到span中元素末尾为止。
+->
+因此，只要从allocCache开始找到哪一位为1即可。假如X位为1，那么X + freeindex 为当前span中可用的元素序号。当allocCache中bit位全部被标记为0后，需要移动freeindex，并更新allocCache，一直到span中元素末尾为止。
+
 ## 第20章
 图20-23  p.k=&k -> p.x=&k
 
